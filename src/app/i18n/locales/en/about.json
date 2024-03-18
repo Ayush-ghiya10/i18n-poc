@@ -1,0 +1,6 @@
+{
+    "title": "Hi from second page!",
+    "back-to-home": "Back to home",
+    "dynamicTitle": "About page for react i18n setup",
+    "counter_other": "{{count}} selected"
+}

@@ -1,25 +1,18 @@
-"use client";
-import { useParams } from "next/navigation";
-import { useState } from "react";
-import { getDictionary } from "../dictionaries";
+import { useTranslation } from "@/app/i18n";
+import Link from "next/link";
+import Dynamic from "./dynamic";
 
-const Page = () => {
-  const [counter, setCounter] = useState(0);
-  const params = useParams();
-  console.log(params);
-  let dict: any;
-  getDictionary(params.lang as string).then((val) => {
-    console.log("🚀 ~ getDictionary ~ val:", val);
-
-    dict = val;
-  });
+export default async function Page({
+  params: { lang },
+}: {
+  params: { lang: string | undefined };
+}) {
+  const { t } = await useTranslation(lang, "about");
   return (
-    <div>
-      <h2>{dict ?? dict["mainPage.heading"]}</h2>
-      <button onClick={() => setCounter(counter + 1)}>Click me!</button>
-      <p>You clicked the button {counter} times.</p>
-    </div>
+    <>
+      <h1>{t("title")}</h1>
+      <Link href={`/${lang}`}>back</Link>
+      <Dynamic />
+    </>
   );
-};
-
-export default Page;
+}
