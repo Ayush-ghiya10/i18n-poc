@@ -1,27 +1,16 @@
-export const fallbackLng = "en";
-export const languages = [fallbackLng, "es", "de"];
-export const defaultNS = "translation";
-export const cookieName = "i18next";
+import type { InitOptions } from "i18next";
+export const FALLBACK_LOCALE = "en";
+export const supportedLocales = ["en", "es", "de"];
+export type Locales = (typeof supportedLocales)[number];
 
-export function getOptions(lng = fallbackLng, ns = defaultNS) {
-  return {
-    // debug: true,
-    supportedLngs: languages,
-    fallbackLng,
-    lng,
-    fallbackNS: defaultNS,
-    defaultNS,
-    ns,
-  };
-}
-export function getOptions1(ns = defaultNS) {
-  return {
-    // debug: true,
-    supportedLngs: languages,
-    fallbackLng,
+export const LANGUAGE_COOKIE = "preferred_language";
 
-    fallbackNS: defaultNS,
-    defaultNS,
+export function getOptions(lang = FALLBACK_LOCALE, ns = "common"): InitOptions {
+  return {
+    // debug: true, // Set to true to see console logs
+    supportedLngs: supportedLocales,
+    fallbackLng: FALLBACK_LOCALE,
+    lng: lang,
     ns,
   };
 }
